@@ -1,1 +1,0 @@
-# botw-gameplay-only
