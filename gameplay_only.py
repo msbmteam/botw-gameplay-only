@@ -144,7 +144,7 @@ def detectClipends(inputVideoFilename, heartLocation):
         vid.grab()
     _, frame = vid.read()
 
-    print(f'Total frames: {endFrame - frameNum + 1}')
+    print(f'Total frames: {endFrame - frameNum}')
     print(f'FPS: {getFps(vid)}')
 
     prevFrame = None
@@ -182,8 +182,10 @@ def detectClipends(inputVideoFilename, heartLocation):
 
     print()
     if len(clipEnds) % 2:  # ensure length of clipEnds is even
-        setFrame(vid, endFrame)
-        clipEnds.append(getPos(vid))
+        setFrame(vid, endFrame - 1)
+        vid.grab()
+        duration = getPos(vid)
+        clipEnds.append(duration)
 
     vid.release()
 
